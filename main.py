@@ -5,9 +5,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, Email, ValidationError
 from flask_bcrypt import Bcrypt, generate_password_hash, check_password_hash
+import os
+from dotenv import load_dotenv
 
+load_dotenv('mysql.env')
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://Hexz:Hexz7799*@localhost/login'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ["MYSQL_LINK"]
 app.config['SECRET_KEY'] = 'TESTING123456789**'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
